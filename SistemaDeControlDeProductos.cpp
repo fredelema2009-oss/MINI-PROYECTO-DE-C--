@@ -256,3 +256,45 @@ void calcularEstadisticas(string nombres[], double precios[], int cantidades[], 
     cout << "Producto mas caro  : " << nombres[indiceMasCaro]  << " ($" << precios[indiceMasCaro]  << ")" << endl;
     cout << "Producto mas barato: " << nombres[indiceMasBarato] << " ($" << precios[indiceMasBarato] << ")" << endl;
 }
+
+//  Elimina un producto por numero de posicion y
+//  desplaza los siguientes para cerrar el hueco
+void eliminarProducto(string nombres[], double precios[], int cantidades[], int &total) {
+ 
+    cout << "---- ELIMINAR PRODUCTO ----" << endl;
+ 
+    // Validar si no hay productos registrados
+    if (total == 0) {
+        cout << "No hay productos para eliminar." << endl;
+        return;
+    }
+ 
+    // Mostrar la lista antes de pedir la posicion
+    mostrarProductos(nombres, precios, cantidades, total);
+ 
+    int posicion;
+    cout << "Ingrese el numero del producto a eliminar: ";
+    cin  >> posicion;
+ 
+    // Validar que la posicion este dentro del rango
+    if (posicion < 1 || posicion > total) {
+        cout << "Error: posicion invalida." << endl;
+        return;
+    }
+ 
+    int indice = posicion - 1;  // convertir posicion a indice de arreglo
+    string nombreEliminado = nombres[indice];
+ 
+    // Desplazar todos los elementos hacia atras para cerrar el hueco
+    for (int i = indice; i < total - 1; i++) {
+        nombres[i]    = nombres[i + 1];
+        precios[i]    = precios[i + 1];
+        cantidades[i] = cantidades[i + 1];
+    }
+ 
+    total--;  // reducir el contador
+ 
+    // Mostrar mensaje de confirmacion y el total actualizado
+    cout << "Producto '" << nombreEliminado << "' eliminado." << endl;
+    cout << "Productos restantes: " << total << endl;
+}
