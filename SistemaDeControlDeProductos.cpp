@@ -14,4 +14,24 @@ Enunciado: Desarrolla un programa modular en C++ que permita:
      Analizar inversión (Mejora Creativa): Generar un reporte especializado que ordene los productos de mayor a menor valor monetario acumulado mediante el algoritmo de ordenamiento burbuja.
 */
 
+#include <iostream>  // Para cin y cout
+#include <string>    // Para usar el tipo string
+#include <iomanip>   // Para dar formato a la salida (setw, fixed, setprecision)
+using namespace std;
+ 
+//Definición de constantes
+const int MAX = 50;  // Máximo de productos que el sistema puede manejar
+ 
+//Declaración de funciones para el sistema de control de productos
+void mostrarMenu();
+void registrarProducto(string nombres[], double precios[], int cantidades[], int &total);
+void mostrarProductos(string nombres[], double precios[], int cantidades[], int total);
+void buscarProducto(string nombres[], double precios[], int cantidades[], int total);
+void calcularEstadisticas(string nombres[], double precios[], int cantidades[], int total);
+void eliminarProducto(string nombres[], double precios[], int cantidades[], int &total);
+void reporteValorInventario(string nombres[], double precios[], int cantidades[], int total);
+bool validarEnteroPositivo(int &numero, string mensaje);
+bool validarDecimalPositivo(double &numero, string mensaje);
+void separador();
+
 
