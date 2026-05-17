@@ -34,4 +34,13 @@ bool validarEnteroPositivo(int &numero, string mensaje);
 bool validarDecimalPositivo(double &numero, string mensaje);
 void separador();
 
+//  FUNCIÓN PRINCIPAL
+int main() {
+    //Declaración de los arreglos del inventario 
+    //Cada posición i de los tres arreglos corresponde
+    //al mismo producto: nombres[i], precios[i], cantidades[i]
+    string nombres[MAX];
+    double precios[MAX];
+    int    cantidades[MAX];
+    int    total = 0;  // Contador de productos registrados actualmente
 
