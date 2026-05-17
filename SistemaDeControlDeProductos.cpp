@@ -177,3 +177,82 @@ void mostrarProductos(string nombres[], double precios[], int cantidades[], int 
     cout << "-----------------------------" << endl;
     cout << "Total de productos: " << total << endl;
 }
+
+//  Buscar un producto comparando el nombre exacto
+void buscarProducto(string nombres[], double precios[], int cantidades[], int total) {
+ 
+    cout << "---- BUSCAR PRODUCTO ----" << endl;
+    // Validar si no hay productos registrados
+    if (total == 0) {
+        cout << "No hay productos registrados para buscar." << endl;
+        return;
+    }
+    // Leer el nombre a buscar
+    string busqueda;
+    cout << "Ingrese el nombre del producto a buscar: ";
+    cin  >> busqueda;
+ 
+    bool encontrado = false;
+ 
+    // Recorrer todos los productos y comparar el nombre
+    for (int i = 0; i < total; i++) {
+        if (nombres[i] == busqueda) {
+            cout << "Producto encontrado:" << endl;
+            cout << "Posicion: " << (i + 1) << endl;
+            cout << "Nombre  : " << nombres[i] << endl;
+            cout << "Precio  : $" << precios[i] << endl;
+            cout << "Cantidad: " << cantidades[i] << " unidades" << endl;
+            encontrado = true;
+        }
+    }
+    // Si no se encontro ningun producto con ese nombre mostrar mensaje
+    if (encontrado == false) {
+        cout << "No se encontro ningun producto con ese nombre." << endl;
+    }
+}
+
+//  Calcular y mostrar estadisticas del inventario: total de unidades, valor total, promedio de precios, producto mas caro y mas barato
+void calcularEstadisticas(string nombres[], double precios[], int cantidades[], int total) {
+ 
+    cout << "---- ESTADISTICAS DEL INVENTARIO ----" << endl;
+    // Validar si no hay productos registrados
+    if (total == 0) {
+        cout << "No hay productos registrados." << endl;
+        return;
+    }
+    // Variables para acumular los totales y encontrar maximos y minimos
+    int    totalUnidades  = 0;
+    double valorTotal     = 0;
+    double sumaPrecios    = 0;
+ 
+    // Inicializar maximo y minimo con el primer producto
+    int indiceMasCaro   = 0;
+    int indiceMasBarato = 0;
+ 
+    // Recorrer todos los productos para calcular
+    for (int i = 0; i < total; i++) {
+        totalUnidades = totalUnidades + cantidades[i];
+        valorTotal    = valorTotal + (precios[i] * cantidades[i]);
+        sumaPrecios   = sumaPrecios + precios[i];
+ 
+        // Comparar para encontrar el mas caro
+        if (precios[i] > precios[indiceMasCaro]) {
+            indiceMasCaro = i;
+        }
+ 
+        // Comparar para encontrar el mas barato
+        if (precios[i] < precios[indiceMasBarato]) {
+            indiceMasBarato = i;
+        }
+    }
+    // Calcular el precio promedio
+    double promedio = sumaPrecios / total;
+ 
+    cout << "Productos distintos      : " << total << endl;
+    cout << "Total de unidades        : " << totalUnidades << endl;
+    cout << "Valor total en inventario: $" << valorTotal << endl;
+    cout << "Precio promedio          : $" << promedio << endl;
+    cout << "-----------------------------" << endl;
+    cout << "Producto mas caro  : " << nombres[indiceMasCaro]  << " ($" << precios[indiceMasCaro]  << ")" << endl;
+    cout << "Producto mas barato: " << nombres[indiceMasBarato] << " ($" << precios[indiceMasBarato] << ")" << endl;
+}
