@@ -107,3 +107,39 @@ void mostrarMenu() {
     cout << "7. Salir" << endl;
     cout << "============================================" << endl;
 }
+
+//  Pide los datos del producto y los guarda en los arreglos
+void registrarProducto(string nombres[], double precios[], int cantidades[], int &total) {
+ 
+    cout << "---- REGISTRAR PRODUCTO ----" << endl;
+ 
+    // Verificar si el inventario ya esta lleno
+    if (total >= MAX) {
+        cout << "El inventario esta lleno." << endl;
+        return;
+    }
+ 
+    string nombre;
+    double precio;
+    int    cantidad;
+    // Lectura del nombre del producto
+    cout << "Nombre del producto: ";
+    cin  >> nombre;
+    // Validacion: el nombre no puede estar vacio
+    cout << "Precio unitario: ";
+    cin  >> precio;
+ 
+    // Validacion: el precio no puede ser negativo ni cero
+    if (precio <= 0) {
+        cout << "Error: el precio debe ser mayor a 0." << endl;
+        return;
+    }
+ 
+    cout << "Cantidad en inventario: ";
+    cin  >> cantidad;
+ 
+    // Validacion: la cantidad no puede ser negativa
+    if (cantidad < 0) {
+        cout << "Error: la cantidad no puede ser negativa." << endl;
+        return;
+    }
