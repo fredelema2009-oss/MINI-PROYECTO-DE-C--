@@ -44,3 +44,66 @@ int main() {
     int    cantidades[MAX];
     int    total = 0;  // Contador de productos registrados actualmente
 
+    int opcion;  // Variable para leer la opción del menú
+ 
+    // Bucle principal del programa
+    // El programa sigue corriendo hasta que el usuario elija salir (opción 7)
+    do {
+        mostrarMenu();
+        cout << "  Ingrese una opcion: ";
+        cin  >> opcion;
+ 
+        cout << endl;
+ 
+        // Estructura switch para manejar cada opción del menú
+        switch (opcion) {
+            case 1:
+                registrarProducto(nombres, precios, cantidades, total);
+                break;
+            case 2:
+                mostrarProductos(nombres, precios, cantidades, total);
+                break;
+            case 3:
+                buscarProducto(nombres, precios, cantidades, total);
+                break;
+            case 4:
+                calcularEstadisticas(nombres, precios, cantidades, total);
+                break;
+            case 5:
+                eliminarProducto(nombres, precios, cantidades, total);
+                break;
+            case 6:
+                // ── MEJORA CREATIVA: Reporte de valor por producto ──
+                reporteValorInventario(nombres, precios, cantidades, total);
+                break;
+            case 7:
+                cout << "  Gracias por usar el sistema. Hasta luego!" << endl;
+                separador();
+                break;
+            default:
+                // Validación: opción fuera del rango 1–7
+                cout << "  [ERROR] Opcion invalida. Por favor ingrese un numero entre 1 y 7." << endl;
+                break;
+        }
+ 
+        cout << endl;
+ 
+    } while (opcion != 7);  // Repite mientras el usuario no elija salir
+ 
+    return 0;
+}
+
+// Muestra las opciones disponibles al usuario
+void mostrarMenu() {
+    cout << "============================================" << endl;
+    cout << "      SISTEMA DE CONTROL DE PRODUCTOS" << endl;
+    cout << "============================================" << endl;
+    cout << "1. Registrar producto" << endl;
+    cout << "2. Mostrar inventario" << endl;
+    cout << "3. Buscar producto por nombre" << endl;
+    cout << "4. Ver estadisticas del inventario" << endl;
+    cout << "5. Eliminar producto" << endl;
+    cout << "6. Reporte de valor por producto [EXTRA]" << endl;
+    cout << "7. Salir" << endl;
+    cout << "============================================" << endl;
+}
