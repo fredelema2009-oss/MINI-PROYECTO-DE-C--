@@ -143,3 +143,37 @@ void registrarProducto(string nombres[], double precios[], int cantidades[], int
         cout << "Error: la cantidad no puede ser negativa." << endl;
         return;
     }
+
+    // Guardar los datos en los arreglos en la posicion actual
+    nombres[total]    = nombre;
+    precios[total]    = precio;
+    cantidades[total] = cantidad;
+    total++;  // aumentar el contador de productos
+ 
+    cout << "Producto registrado correctamente." << endl;
+    cout << "Total de productos: " << total << endl;
+}
+ 
+
+//  Recorremos los arreglos y muestra todos los productos
+void mostrarProductos(string nombres[], double precios[], int cantidades[], int total) {
+ 
+    cout << "---- INVENTARIO COMPLETO ----" << endl;
+    // Validar si no hay productos registrados
+    if (total == 0) {
+        cout << "No hay productos registrados." << endl;
+        return;
+    }
+ 
+    // Recorrer e imprimir cada producto
+    for (int i = 0; i < total; i++) {
+        cout << "-----------------------------" << endl;
+        cout << "Producto #" << (i + 1) << endl;
+        cout << "Nombre  : " << nombres[i] << endl;
+        cout << "Precio  : $" << precios[i] << endl;
+        cout << "Cantidad: " << cantidades[i] << " unidades" << endl;
+    }
+ 
+    cout << "-----------------------------" << endl;
+    cout << "Total de productos: " << total << endl;
+}
