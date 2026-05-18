@@ -32,7 +32,6 @@ void eliminarProducto(string nombres[], double precios[], int cantidades[], int 
 void reporteValorInventario(string nombres[], double precios[], int cantidades[], int total);
 bool validarEnteroPositivo(int &numero, string mensaje);
 bool validarDecimalPositivo(double &numero, string mensaje);
-void separador();
 
 //  FUNCIÓN PRINCIPAL
 int main() {
@@ -78,7 +77,7 @@ int main() {
                 break;
             case 7:
                 cout << "  Gracias por usar el sistema. Hasta luego!" << endl;
-                separador();
+            
                 break;
             default:
                 // Validación: opción fuera del rango 1–7
@@ -345,7 +344,7 @@ void reporteValorInventario(string nombres[], double precios[], int cantidades[]
             }
         }
     }
-    
+
  // Mostrar el ranking ordenado
     double totalGeneral = 0;
  
