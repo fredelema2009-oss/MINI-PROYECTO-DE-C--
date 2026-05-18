@@ -298,3 +298,63 @@ void eliminarProducto(string nombres[], double precios[], int cantidades[], int 
     cout << "Producto '" << nombreEliminado << "' eliminado." << endl;
     cout << "Productos restantes: " << total << endl;
 }
+
+
+// MEJORA CREATIVA
+//  Calcula el valor total de cada producto (precio x cantidad)
+//  y los muestra ordenados de mayor a menor valor en bodega.
+//  Se copian los datos a arreglos auxiliares para ordenarlos
+//  con burbuja sin modificar el inventario original.
+void reporteValorInventario(string nombres[], double precios[], int cantidades[], int total) {
+ 
+    cout << "---- REPORTE DE VALOR POR PRODUCTO [MEJORA CREATIVA] ----" << endl;
+ 
+    if (total == 0) {
+        cout << "No hay productos registrados." << endl;
+        return;
+    }
+ 
+    // Calcular el valor acumulado de cada producto: precio x cantidad
+    double valores[MAX];
+    for (int i = 0; i < total; i++) {
+        valores[i] = precios[i] * cantidades[i];
+    }
+ 
+    // Copiar a arreglos auxiliares para no modificar el inventario original
+    string nombresAux[MAX];
+    double valoresAux[MAX];
+ 
+    for (int i = 0; i < total; i++) {
+        nombresAux[i] = nombres[i];
+        valoresAux[i] = valores[i];
+    }
+ 
+    // Ordenamiento burbuja: de mayor a menor segun valor acumulado
+    for (int i = 0; i < total - 1; i++) {
+        for (int j = 0; j < total - i - 1; j++) {
+            if (valoresAux[j] < valoresAux[j + 1]) {
+                // Intercambiar valores
+                double tempValor = valoresAux[j];
+                valoresAux[j]    = valoresAux[j + 1];
+                valoresAux[j+1]  = tempValor;
+ 
+                // Intercambiar nombres para que sigan al valor
+                string tempNombre = nombresAux[j];
+                nombresAux[j]     = nombresAux[j + 1];
+                nombresAux[j+1]   = tempNombre;
+            }
+        }
+    }
+    
+ // Mostrar el ranking ordenado
+    double totalGeneral = 0;
+ 
+    for (int i = 0; i < total; i++) {
+        cout << (i + 1) << ". " << nombresAux[i] << " -> $" << valoresAux[i] << endl;
+        totalGeneral = totalGeneral + valoresAux[i];
+    }
+ 
+    cout << "-----------------------------" << endl;
+    cout << "Valor total del inventario: $" << totalGeneral << endl;
+    cout << "Este reporte muestra que productos tienen mayor valor en bodega." << endl;
+}
